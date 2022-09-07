@@ -1,7 +1,9 @@
 import React from 'react';
+import { Routes, Route, BrowserRouter, Outlet } from "react-router-dom";
 import FilmList from './components/FilmList';
 import SearchBar from './components/SearchBar';
 import TrendMovies from './components/TrendMovies';
+import Nav from './components/Nav';
 import './index.css';
 
 
@@ -40,20 +42,10 @@ export default class App extends React.Component {
     if(trendperiod === true){
       const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`);
       const responseData = await response.json();
-      
-      
-      // if(this.state.movies === responseData.results){
-      //   console.log("days eşit");
-      // }else{
-      //   console.log("days eşit değil");
-      // }
 
       this.setState({
         movies : responseData.results
       })
-
-      console.log("day");
-      console.log(responseData.results);
 
     }else{
       const response = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}`);
@@ -62,13 +54,6 @@ export default class App extends React.Component {
       this.setState({
         movies : responseData.results
       })
-      console.log("week");
-      console.log(responseData.results);
-      // if(this.state.movies === responseData.results){
-      //   console.log("weeks eşit");
-      // }else{
-      //   console.log("weeks eşit değil");
-      // }
 
     }
   }
@@ -95,11 +80,39 @@ export default class App extends React.Component {
 
     
     return (
-      <div className="lg:w-4/5 w-full mx-auto ">
-        <SearchBar inputData = {this.searchMovie}/>
-        <TrendMovies trendMovies = {filteredMovies} trendScale ={this.switchTrendScale}/>
-        <FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/>
-      </div>
+      
+      <BrowserRouter>
+      
+        <Routes>
+        
+          <Route path="/" element={<Nav />}>
+          
+
+            <Route path="/list" element={<FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/>}/>
+            <Route path="/trends" element={<TrendMovies trendMovies = {filteredMovies} trendScale ={this.switchTrendScale}/>}/>
+            <Route path="/films" element={<FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/>}/>
+
+
+          
+          
+            {/* <SearchBar inputData = {this.searchMovie}/> */}
+            
+            {/* <Route path='/trends'>
+              <TrendMovies trendMovies = {filteredMovies} trendScale ={this.switchTrendScale}/>
+            </Route>
+
+            <FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/> */}
+            
+          </Route>
+          
+            
+        </Routes>
+        
+        <Outlet />
+        
+      </BrowserRouter>
+    
+    
     );
     
   }
