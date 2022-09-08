@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter, Outlet } from "react-router-dom";
+// import { Routes, Route, Link } from "react-router-dom";
 import FilmList from './components/FilmList';
 import SearchBar from './components/SearchBar';
 import TrendMovies from './components/TrendMovies';
@@ -21,7 +21,7 @@ export default class App extends React.Component {
   }
   
 
-
+  // Delete from list & update the state
   DeletedMovie = (movie) =>{
     const newMovieList = this.state.movies.filter(m => !(m.id === movie.id));
 
@@ -31,6 +31,7 @@ export default class App extends React.Component {
 
   }
 
+  // search movie on the List
   searchMovie = (input) =>{
     this.setState({
       inputSearch : input
@@ -38,6 +39,7 @@ export default class App extends React.Component {
     
   }
   
+  // get data from API  on trend state
   async switchTrendScale (trendperiod) {
     if(trendperiod === true){
       const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`);
@@ -58,6 +60,8 @@ export default class App extends React.Component {
     }
   }
 
+
+
   async componentDidMount(){
     
     const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`);
@@ -72,6 +76,7 @@ export default class App extends React.Component {
   
   render(){
     
+    // filter movies on search input value
     let filteredMovies = this.state.movies.filter(movie =>{
       if(movie.title){return movie.title.toLowerCase().indexOf(this.state.inputSearch.toLowerCase()) !== -1;}
       else{return movie.name.toLowerCase().indexOf(this.state.inputSearch.toLowerCase()) !== -1;}
@@ -80,39 +85,12 @@ export default class App extends React.Component {
 
     
     return (
-      
-      <BrowserRouter>
-      
-        <Routes>
-        
-          <Route path="/" element={<Nav />}>
-          
-
-            <Route path="/list" element={<FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/>}/>
-            <Route path="/trends" element={<TrendMovies trendMovies = {filteredMovies} trendScale ={this.switchTrendScale}/>}/>
-            <Route path="/films" element={<FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/>}/>
-
-
-          
-          
-            {/* <SearchBar inputData = {this.searchMovie}/> */}
-            
-            {/* <Route path='/trends'>
-              <TrendMovies trendMovies = {filteredMovies} trendScale ={this.switchTrendScale}/>
-            </Route>
-
-            <FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/> */}
-            
-          </Route>
-          
-            
-        </Routes>
-        
-        <Outlet />
-        
-      </BrowserRouter>
-    
-    
+      <div>
+            <Nav />
+            <SearchBar />
+            <TrendMovies trendMovies = {filteredMovies} trendScale ={this.switchTrendScale}/>
+            <FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/>
+      </div>
     );
     
   }
