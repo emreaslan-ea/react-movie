@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default class SearchBar extends React.Component {
+const SearchBar = () =>{
 
-  render() {
+  
     return (
         <div className="lg:w-4/5 w-full mx-auto">
             <label className="relative block mt-5 mx-6">
@@ -18,5 +18,6 @@ export default class SearchBar extends React.Component {
   
         </div>
     )
-  }
+  
 }
+export default SearchBar;

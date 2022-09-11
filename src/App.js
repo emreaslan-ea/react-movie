@@ -1,99 +1,102 @@
-import React from 'react';
-// import { Routes, Route, Link } from "react-router-dom";
+import {React, useEffect, useState} from 'react';
 import FilmList from './components/FilmList';
 import SearchBar from './components/SearchBar';
 import TrendMovies from './components/TrendMovies';
-import Nav from './components/Nav';
+import  Nav  from './components/Nav';
 import './index.css';
+import { Route, Routes } from 'react-router-dom';
+import MoviePart from './components/MoviePart';
 
 
-export default class App extends React.Component {
-  constructor(){
-    super();
+function App(){
 
-    this.switchTrendScale = this.switchTrendScale.bind(this);
-  }
-  state ={
-    movies : [],
-
-    inputSearch : ""
-
-  }
-  
+  const [movies,setMovies] = useState([]);
+  const [inputSearch,setInputSearch] = useState("");
 
   // Delete from list & update the state
-  DeletedMovie = (movie) =>{
-    const newMovieList = this.state.movies.filter(m => !(m.id === movie.id));
+  const DeletedMovie = (movie) =>{
+    const newMovieList = movies.filter(m => !(m.id === movie.id));
 
-    this.setState({
-      movies : newMovieList
-    })
-
+    setMovies(newMovieList);
   }
 
   // search movie on the List
-  searchMovie = (input) =>{
-    this.setState({
-      inputSearch : input
-    })
-    
+  const searchMovie = (input) =>{
+    setInputSearch(input);
   }
   
   // get data from API  on trend state
-  async switchTrendScale (trendperiod) {
+  const switchTrendScale = async (trendperiod) => {
     if(trendperiod === true){
       const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`);
       const responseData = await response.json();
 
-      this.setState({
-        movies : responseData.results
-      })
+      setMovies(responseData.results)
 
     }else{
       const response = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}`);
       const responseData = await response.json();
       
-      this.setState({
-        movies : responseData.results
-      })
+      setMovies(responseData.results)
 
     }
   }
 
-
-
-  async componentDidMount(){
-    
+  const data = async () =>{
     const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`);
     const responseData = await response.json();
     
-    this.setState({
-      movies : responseData.results
-    })
-    
+    setMovies(responseData.results)
   }
+
+  useEffect( () =>{
+    data();
+  },[]);
+    
+ 
+    
   
   
-  render(){
+  
+  
     
     // filter movies on search input value
-    let filteredMovies = this.state.movies.filter(movie =>{
-      if(movie.title){return movie.title.toLowerCase().indexOf(this.state.inputSearch.toLowerCase()) !== -1;}
-      else{return movie.name.toLowerCase().indexOf(this.state.inputSearch.toLowerCase()) !== -1;}
+    let filteredMovies = movies.filter(movie =>{
+      if(movie.title){return movie.title.toLowerCase().indexOf(inputSearch.toLowerCase()) !== -1;}
+      else{return movie.name.toLowerCase().indexOf(inputSearch.toLowerCase()) !== -1;}
     })
 
 
     
     return (
-      <div>
-            <Nav />
+      <>
+      <Nav />
+      <Routes>
+        <Route path='/' element={
+          <>
+            
             <SearchBar />
-            <TrendMovies trendMovies = {filteredMovies} trendScale ={this.switchTrendScale}/>
-            <FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/>
-      </div>
-    );
+            <TrendMovies trendMovies = {filteredMovies} trendScale ={switchTrendScale}/>
+            <FilmList movies={filteredMovies} deleteMovieProp={DeletedMovie}/> 
+          </>
+        }/>
+        <Route path='/search' element={<SearchBar />}/>
+        <Route path='/trends' element={<TrendMovies trendMovies = {filteredMovies} trendScale ={switchTrendScale}/>}/>
+        <Route path='/list' element={<FilmList movies={filteredMovies} deleteMovieProp={DeletedMovie}/>} />
+        <Route path='/:id' element={<MoviePart/>}/>
+      </Routes>
+      
+      
+      </>
+
+            // <Nav />
+            // <SearchBar />
+            // <TrendMovies trendMovies = {filteredMovies} trendScale ={this.switchTrendScale}/>
+            // <FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/>
+    )
     
-  }
+  
 
 }
 
+export default App;

@@ -33,24 +33,6 @@ export default class FilmList extends React.Component {
         </div>
 
 
-        {/* <div className='wrapper'>
-
-          <div className='group ease-out duration-300 relative hover:before:opacity-100 before:absolute before:opacity-0 before:top-0 before:left-0 before:transition-opacity before:z-20 before:bg-gray-300'>
-            <img className='absolute w-64 h-64' src="https://images.unsplash.com/photo-1477666250292-1419fac4c25c?auto=format&fit=crop&w=667&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt='movie' />
-            <div className='info max-w-fit group-hover:opacity-100 group-hover:translate-y-0 translate-y-64 duration-500 z-30 '>
-              <h1>Mountain</h1>
-              <p>Lorem Ipsum is simply dummy text from the printing and typeseting industry</p>
-              <button>Read More</button>
-            </div>
-          </div>
-
-        </div>
-        <div className='h-96 bg-slate-600'></div> */}
-
-        
-
-
-
       </div>
     )
   }
