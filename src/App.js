@@ -69,7 +69,7 @@ function App(){
 
     
     return (
-      <>
+      <div className='bg-slate-500'>
       <Nav />
       <Routes>
         <Route path='/' element={
@@ -87,7 +87,7 @@ function App(){
       </Routes>
       
       
-      </>
+      </div>
 
             // <Nav />
             // <SearchBar />

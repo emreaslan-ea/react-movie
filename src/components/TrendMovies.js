@@ -49,7 +49,7 @@ export default class TrendMovies extends Component {
                                     className="group-hover:opacity-30 shrink-0 object-cover w-full group-hover:scale-110 transition duration-300 ease-in-out"
                                     src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movie.poster_path}`}
                                 />
-                            
+                            {console.log(movie)}
                         
                         </Link>
                     ))}
