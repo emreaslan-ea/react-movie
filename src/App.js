@@ -69,7 +69,7 @@ function App(){
 
     
     return (
-      <div className='bg-slate-500'>
+      <div className='bg-[#14181c]'>
       <Nav />
       <Routes>
         <Route path='/' element={
