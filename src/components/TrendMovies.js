@@ -10,7 +10,7 @@ export default class TrendMovies extends Component {
     // to={`/:${id}`}
     return (
         
-            <div className='mt-5 lg:w-4/5 w-full mx-auto cursor-pointer'>
+            <div className='mt-5 lg:w-4/5 w-full mx-auto cursor-pointer text-[#abc]'>
                 <div className='flex items-center'>
                     <h1 className='text-2xl mr-8 mb-2 font-normal'>Trending Movies</h1>
 

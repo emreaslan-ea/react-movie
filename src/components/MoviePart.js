@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import MovieCast from './MovieCast';
 
 import MovieReviews from './MovieReviews';
 
@@ -77,8 +78,8 @@ function MoviePart(){
                     <h1 className='text-white text-3xl font-serif font-light capitalize'>{movieDetail.title} <span className='text-gray-300 text-sm'>{movieDetail.release_date ? movieDetail.release_date.toString().slice(0,4) : movieDetail.title}</span></h1>
                     
                     <h3 className='text-gray-300  uppercase font-bold mt-12'>{movieDetail.tagline}</h3>
-                    <p className='text-gray-400 indent-8 mt-4'>{movieDetail.overview}</p>
-                    <div className='mt-5 flex gap-x-4'>
+                    <p className='text-gray-400 indent-8 mt-8'>{movieDetail.overview}</p>
+                    <div className='mt-12 flex gap-x-4'>
                         {movieDetail.genres ? movieDetail.genres.map(genre =>(
                         
                             <h1 key={genre.id} className='py-2 px-4 text-white bg-sky-800 text-sm rounded-full'>{genre.name}</h1>
@@ -86,8 +87,10 @@ function MoviePart(){
                         )) : movieDetail.title}
                     </div>
 
-                    {/*MOVİE Revievs*/}
+                    <MovieCast />
                     <MovieReviews movieDetail={movieDetail}/>
+
+                    
                     
                 </div>
             </div>
