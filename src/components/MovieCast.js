@@ -27,7 +27,7 @@ function MovieCast(){
             <div className=' w-[45rem] gap-x-12 flex flex-nowrap overflow-x-auto pb-2 mt-6 scrollbar'>
                 
                 {movieCast.cast ? movieCast.cast.map(cast => (
-                    <div key={cast.cast_id} className='w-24 flex-col items-center justify-center'>
+                    <div key={cast.cast_id} className='flex-col items-center justify-center'>
 
                         <img
                             alt=""
@@ -35,7 +35,7 @@ function MovieCast(){
                             src={`https://www.themoviedb.org/t/p/w58_and_h87_face/${cast.profile_path}`}
                         />
 
-                        <div className="font-bold text-center text-[#abc] ">{cast.character}</div>
+                        <div className="font-bold text-center text-xs text-[#abc] ">{cast.character}</div>
 
                         <div className="text-xs text-center text-[#678]">{cast.name}</div>
 

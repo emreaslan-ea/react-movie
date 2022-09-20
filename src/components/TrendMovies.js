@@ -10,7 +10,7 @@ export default class TrendMovies extends Component {
     // to={`/:${id}`}
     return (
         
-            <div className='mt-5 lg:w-4/5 w-full mx-auto cursor-pointer text-[#abc]'>
+            <div className='mt-44 lg:w-4/5 w-full mx-auto cursor-pointer text-[#abc]'>
                 <div className='flex items-center'>
                     <h1 className='text-2xl mr-8 mb-2 font-normal'>Trending Movies</h1>
 
@@ -28,7 +28,7 @@ export default class TrendMovies extends Component {
                     <p className='text-sm mb-1 ml-1 font-semibold'>Day/Week</p>
                 </div>
 
-                <div className='relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto pb-7'>
+                <div className='relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto pb-7 scrollbar'>
                 
                     {this.props.trendMovies.map(movie => (
                         <Link to={`/${movie.id}`} key={movie.id} className='snap-start scroll-mx-6 shrink-0 overflow-hidden bg-red-400 cursor-pointer rounded-lg relative group'>

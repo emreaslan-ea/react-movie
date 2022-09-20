@@ -12,6 +12,7 @@ function App(){
 
   const [movies,setMovies] = useState([]);
   const [inputSearch,setInputSearch] = useState("");
+  
 
   // Delete from list & update the state
   const DeletedMovie = (movie) =>{
@@ -24,7 +25,7 @@ function App(){
   const searchMovie = (input) =>{
     setInputSearch(input);
   }
-  
+  console.log(inputSearch);
   // get data from API  on trend state
   const switchTrendScale = async (trendperiod) => {
     if(trendperiod === true){
@@ -75,7 +76,7 @@ function App(){
         <Route path='/' element={
           <>
             
-            <SearchBar />
+            <SearchBar inputData={searchMovie}/>
             <TrendMovies trendMovies = {filteredMovies} trendScale ={switchTrendScale}/>
             <FilmList movies={filteredMovies} deleteMovieProp={DeletedMovie}/> 
           </>
@@ -88,11 +89,6 @@ function App(){
       
       
       </div>
-
-            // <Nav />
-            // <SearchBar />
-            // <TrendMovies trendMovies = {filteredMovies} trendScale ={this.switchTrendScale}/>
-            // <FilmList movies={filteredMovies} deleteMovieProp={this.DeletedMovie}/>
     )
     
   

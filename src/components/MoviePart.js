@@ -3,15 +3,16 @@ import { useParams } from 'react-router-dom';
 import MovieCast from './MovieCast';
 
 import MovieReviews from './MovieReviews';
+import MovieSimilar from './MovieSimilar';
 
 
 
 
 
 function MoviePart(){
+
     const { id } = useParams();
     const [movieDetail, setMovieDetail] = useState({});
-    
     
     const dataDetail = async () =>{
         const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`);
@@ -20,14 +21,10 @@ function MoviePart(){
         setMovieDetail(responseData);
         
     }
-
-
-
-
+    
 
     useEffect( () =>{
         dataDetail();
-        
     },[]);
    
     
@@ -47,7 +44,7 @@ function MoviePart(){
          
 
             <div className='z-30 w-5/6 mx-auto lg:w-2/3 flex  p-5  pt-96 '>
-                <div className='lg:w-1/5 w-1/4 max-w-full basis-1/4'>
+                <div className='lg:w-1/5 w-1/4 max-w-full basis-1/4 mr-4'>
                     <img className='rounded-lg  object-cover  '
                     alt="" src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movieDetail.poster_path}`}/>
                     
@@ -90,7 +87,7 @@ function MoviePart(){
                     <MovieCast />
                     <MovieReviews movieDetail={movieDetail}/>
 
-                    
+                    <MovieSimilar />
                     
                 </div>
             </div>
@@ -105,16 +102,3 @@ function MoviePart(){
 }
 
 export default MoviePart;
-
-
-          /* <div className='w-5/6 mx-auto -mt-32 lg:w-2/3 flex bg-black p-5 z-50'>
-                <div className='lg:w-1/5 w-1/4 max-w-full basis-1/4'>
-                    <img className='rounded-lg  object-cover  '
-                    alt="" src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movieDetail.poster_path}`}/>
-                </div>
-                <div className='basis-3/4 ml-4'>
-                    <h1 className='text-white text-3xl font-serif font-light capitalize'>{movieDetail.title}</h1>
-                    <p className='text-gray-400 text-sm'>{movieDetail.release_date ? movieDetail.release_date.toString().slice(0,4) : movieDetail.title}</p>
-                    <p className='text-gray-400 text-lg'>Directed by</p>
-                </div>
-            </div>*/

@@ -3,8 +3,8 @@ function Nav(){
 
 
   return(
-    <div className="bg-slate-800">
-      <nav className=" bg-slate-800 text-white py-3 lg:w-4/5 w-full mx-auto">
+    <div className="relative z-50 h-0">
+      <nav className=" text-white py-3 lg:w-4/5 w-full mx-auto">
         <ul className="flex items-center p-2 justify-between">
           <li className="font-serif text-xl italic font-extrabold mr-5 tracking-wider">REMOVİECT</li>
             <div className="flex items-center">
