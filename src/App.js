@@ -25,7 +25,7 @@ function App(){
   const searchMovie = (input) =>{
     setInputSearch(input);
   }
-  console.log(inputSearch);
+  
   // get data from API  on trend state
   const switchTrendScale = async (trendperiod) => {
     if(trendperiod === true){
@@ -42,7 +42,7 @@ function App(){
 
     }
   }
-
+ 
   const data = async () =>{
     const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`);
     const responseData = await response.json();

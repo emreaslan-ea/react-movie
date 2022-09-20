@@ -26,8 +26,12 @@ function MoviePart(){
     useEffect( () =>{
         dataDetail();
     },[]);
-   
     
+    let posterUrl = "";
+    movieDetail.poster_path ? 
+    posterUrl = `https://www.themoviedb.org/t/p/w220_and_h330_face/${movieDetail.poster_path}` :
+    posterUrl = 'https://imgs.search.brave.com/XyOzjX46zOb51_FArnB2f9Xu03y6ql3eqVQGaIUM0F0/rs:fit:1024:1024:1/g:ce/aHR0cHM6Ly93d3cu/YWxsaWFuY2VwbGFz/dC5jb20vd3AtY29u/dGVudC91cGxvYWRz/L25vLWltYWdlLTEw/MjR4MTAyNC5wbmc';
+ 
     // {const pop = movieDetail.popularity.toPrecision(2);
     // console.log(pop);
     // }
@@ -37,16 +41,10 @@ function MoviePart(){
             
             <img className='-z-20 absolute ' src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${movieDetail.backdrop_path}`}alt=""/>
             <img className='absolute -z-10 w-full  aspect-[12/5]' alt="" src="https://imgs.search.brave.com/pVL4eQl5R1V8wtwjMhxzt9Zmx3xANfKzBIywIjSqhrI/rs:fit:1200:1144:1/g:ce/aHR0cHM6Ly93d3cu/ZGFuY2V3aXRobWUu/dXMvd3AtY29udGVu/dC91cGxvYWRzLzIw/MTgvMDMvYmxhY2st/ZmFkZS1mdWxsLnBu/Zw"></img>
-
-            {/* <div className='bg-gradient-to-t from-black z-20 via-none flex justify-center lg:w-4/5 mx-auto w-full'>
-                <img className='-z-10 relative' src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${movieDetail.backdrop_path}`}alt=""/>
-            </div> */}
          
-
             <div className='z-30 w-5/6 mx-auto lg:w-2/3 flex  p-5  pt-96 '>
                 <div className='lg:w-1/5 w-1/4 max-w-full basis-1/4 mr-4'>
-                    <img className='rounded-lg  object-cover  '
-                    alt="" src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${movieDetail.poster_path}`}/>
+                    <img className='rounded-lg  object-cover' alt="" src={posterUrl}/>
                     
                     <div className='flex items-center justify-evenly mr-4 mt-2'>
                         <div className='flex items-center'>
