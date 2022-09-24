@@ -6,6 +6,8 @@ import  Nav  from './components/Nav';
 import './index.css';
 import { Route, Routes } from 'react-router-dom';
 import MoviePart from './components/MoviePart';
+import Footer from './components/Footer';
+import UpcomingMovies from './components/UpcomingMovies';
 
 
 function App(){
@@ -70,23 +72,25 @@ function App(){
 
     
     return (
+      
       <div className='bg-[#14181c]'>
+        {console.log("app rendered")}
       <Nav />
+      
       <Routes>
         <Route path='/' element={
           <>
             
             <SearchBar inputData={searchMovie}/>
             <TrendMovies trendMovies = {filteredMovies} trendScale ={switchTrendScale}/>
-            <FilmList movies={filteredMovies} deleteMovieProp={DeletedMovie}/> 
+            <UpcomingMovies trendMovies = {filteredMovies}/>
+            <FilmList movies={filteredMovies} deleteMovieProp={DeletedMovie}/>
+            
           </>
         }/>
-        <Route path='/search' element={<SearchBar />}/>
-        <Route path='/trends' element={<TrendMovies trendMovies = {filteredMovies} trendScale ={switchTrendScale}/>}/>
-        <Route path='/list' element={<FilmList movies={filteredMovies} deleteMovieProp={DeletedMovie}/>} />
         <Route path='/:id' element={<MoviePart/>}/>
       </Routes>
-      
+      <Footer />
       
       </div>
     )

@@ -24,15 +24,16 @@ function MovieSimilar(props){
         window.location.reload();
         
     }
-
+    // to={`/${movie.id}`}
     return(
         <div className="mt-8">
+            {console.log("MovieSimilar rendered")}
             <h3 className='uppercase text-sm tracking-wider border-b border-[#456] text-[#9ab]'>SIMILAR MOVIES</h3>
             <div className='w-[45rem] relative flex gap-6 snap-x snap-mandatory overflow-x-auto pb-7 scrollbar mt-6'>
                 
                 {movieSimilar.results ? movieSimilar.results.map(movie => (
-                    <div  key={movie.id}  className='snap-start scroll-mx-6 shrink-0 overflow-hidden bg-red-400 cursor-pointer rounded-lg relative group'>
-                        <Link to={`/${movie.id}`} onClick={()=>setTimeout(RefreshPage,2000)}>
+                    <a  key={movie.id} href='#moviePart' className='snap-start scroll-mx-6 shrink-0 overflow-hidden bg-red-400 cursor-pointer rounded-lg relative group'>
+                        <Link to={`/${movie.id}`} onClick={()=>RefreshPage} >
                             <div className="rounded-lg z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end">
                                 <div>
                                     <div className="pl-1 space-y-3 group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 pb-5 transform transition duration-300 ease-in-out">
@@ -47,7 +48,7 @@ function MovieSimilar(props){
                             />
                         </Link>
                     
-                    </div>
+                    </a>
                 )): movieSimilar.results}
                 
             </div>

@@ -8,50 +8,66 @@ function MovieReviews(){
   let reviewerStars=0;
   const [movieReviews, setMovieReviews] = useState({})
 
-  const dataReview = async () =>{
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${urlID}/reviews?api_key=${process.env.REACT_APP_API_KEY}`);
-    const responseData = await response.json();
+  // const dataReview = async () =>{
+  //   const response = await fetch(`https://api.themoviedb.org/3/movie/${urlID}/reviews?api_key=${process.env.REACT_APP_API_KEY}`);
+  //   const responseData = await response.json();
         
-    setMovieReviews(responseData);
+  //   setMovieReviews(responseData);
         
-  }
+  // }
   console.log(movieReviews)
   useEffect( () =>{
+    const dataReview = async () =>{
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${urlID}/reviews?api_key=${process.env.REACT_APP_API_KEY}`);
+      const responseData = await response.json();
+          
+      setMovieReviews(responseData);
+          
+    }
     dataReview();
-  },[]);
+  },[urlID]);
   
   if(movieReviews.total_results === 0){
-    return console.log(1);
-  }else{
+    return <>
+    {console.log("movieReviews result0 rendered")}</>
+    
+  }
+  else{
     return(
       <div>
+        {console.log("MovieReviews rendered")}
         <div className='mt-8'>
           <h3 className='uppercase text-sm tracking-wider border-b border-[#456] text-[#9ab]'>Popular Reviews</h3>
 
           
 
-          {movieReviews.results ? movieReviews.results.map((review, i) => {
+          {movieReviews.results ? movieReviews.results.map((review, id) => {
 
             //review star rating
             reviewerStars = review.author_details.rating;
 
             const getReviewersStars = reviewerStars => {
               let allReviewerStars = [];
-              for (let i = 0; i <= reviewerStars; i++) {
-                const item = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3 fill-green-500"><path fillRule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clipRule="evenodd" /></svg>;
+              for (let j = 0; j <= reviewerStars; j++) {
+                const item = <svg key={j} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3 fill-green-500"><path fillRule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clipRule="evenodd" /></svg>;
                 allReviewerStars.push(<li key={item.id}>{item}</li>);
               }
               return allReviewerStars;
             };
 
             //avatar path
-            review.author_details.avatar_path.includes('https') ?
+            if(!review.author_details.avatar_path === null){
+              review.author_details.avatar_path.includes('https') ?
               avatarURL = review.author_details.avatar_path.slice(1) :
               avatarURL = `https://www.gravatar.com/avatar/${review.author_details.avatar_path}`
+            }else{
+              avatarURL ='https://cdn-icons-png.flaticon.com/128/168/168734.png';
+            }
+
 
             return (
 
-              <a  href={review.url} key={i} className='flex mt-2 hover:ring p-4 ring-sky-800 transition duration-500' title='read more...'>
+              <a  href={review.url} key={id} className='flex mt-2 hover:ring p-4 ring-sky-800 transition duration-500' title='read more...'>
 
                 <div className='w-12'>
                   <img className='rounded-full w-11 h-11' alt='' src={`${avatarURL}`} />

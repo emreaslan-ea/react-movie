@@ -18,11 +18,11 @@ function SearchBar(){
 
     useEffect( () =>{
         dataSearchMovie();
-    },[searchMovie]);
+    },[]);
 
     return (
         <div className='relative z-30'>
-            
+            {console.log("searchbaar rendered")}
             <div className='absolute text-slate-600 font-head inset-0'>
                 <h1 className='absolute  text-6xl top-48 left-48'>WELCOME TO THE</h1>
                 <h1 className='absolute text-6xl top-72 right-56'>MOVIE CLUB</h1>
