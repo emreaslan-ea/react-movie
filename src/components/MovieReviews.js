@@ -73,7 +73,7 @@ function MovieReviews(){
                 </div>
 
 
-                <div className='pl-4'>
+                <div className='pl-4 overflow-hidden'>
 
                   <div className='flex items-center'>
                     <p className='text-[#678] text-xs'>Review by <span className='text-[#abc] text-bold'>{review.author}</span></p>
@@ -81,7 +81,7 @@ function MovieReviews(){
                   </div>
 
                   <div className='mt-2'>
-                    <p className='text-[#678] overflow-hidden text-ellipsis max-h-24 text-left'>{review.content}</p>
+                    <p className='text-[#678] text-sm md:text-base text-ellipsis max-h-24 text-left'>{review.content}</p>
                   </div>
                 </div>
 
