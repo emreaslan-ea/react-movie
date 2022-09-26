@@ -22,7 +22,7 @@ const UpcomingMovies = () =>{
    
     return (
         
-            <div className='mt-16 lg:w-4/5 w-full mx-auto cursor-pointer text-[#abc]'>
+            <div className='px-8 lg:px-0 mt-16 lg:w-4/5 w-full mx-auto cursor-pointer text-[#abc]'>
                 {console.log("upcomingmovies rendered")}
                 <div className='flex items-center'>
                     <h1 className='text-2xl mr-8 mb-2 font-normal'>Upcoming Movies</h1>

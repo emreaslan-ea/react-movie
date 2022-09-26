@@ -23,9 +23,9 @@ function MovieCast(){
     return(
         <div className="mt-16 mb-12">
             {console.log("movieCast rendered")}
-            <h3 className='uppercase text-sm tracking-wider border-b border-[#456] text-[#9ab]'>CAST</h3>
+            <h3 className='uppercase text-sm tracking-wider border-b border-[#456] text-[#9ab]'>Cast</h3>
 
-            <div className=' w-[45rem] gap-x-12 flex flex-nowrap overflow-x-auto pb-2 mt-6 scrollbar'>
+            <div className='gap-x-12 flex flex-nowrap overflow-x-auto pb-2 mt-6 scrollbar'>
                 
                 {movieCast.cast ? movieCast.cast.map(cast => (
                     <div key={cast.cast_id} className='flex-col items-center justify-center'>

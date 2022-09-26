@@ -29,7 +29,7 @@ function MovieSimilar(props){
         <div className="mt-8">
             {console.log("MovieSimilar rendered")}
             <h3 className='uppercase text-sm tracking-wider border-b border-[#456] text-[#9ab]'>SIMILAR MOVIES</h3>
-            <div className='w-[45rem] relative flex gap-6 snap-x snap-mandatory overflow-x-auto pb-7 scrollbar mt-6'>
+            <div className='relative flex gap-6 snap-x snap-mandatory overflow-x-auto pb-7 scrollbar mt-6'>
                 
                 {movieSimilar.results ? movieSimilar.results.map(movie => (
                     <a  key={movie.id} href='#moviePart' className='snap-start scroll-mx-6 shrink-0 overflow-hidden bg-red-400 cursor-pointer rounded-lg relative group'>

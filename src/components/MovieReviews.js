@@ -34,8 +34,7 @@ function MovieReviews(){
   }
   else{
     return(
-      <div>
-        {console.log("MovieReviews rendered")}
+      
         <div className='mt-8'>
           <h3 className='uppercase text-sm tracking-wider border-b border-[#456] text-[#9ab]'>Popular Reviews</h3>
 
@@ -69,20 +68,20 @@ function MovieReviews(){
 
               <a  href={review.url} key={id} className='flex mt-2 hover:ring p-4 ring-sky-800 transition duration-500' title='read more...'>
 
-                <div className='w-12'>
-                  <img className='rounded-full w-11 h-11' alt='' src={`${avatarURL}`} />
+                <div>
+                  <img className='rounded-full aspect-square max-w-[36px]' alt='' src={`${avatarURL}`} />
                 </div>
 
 
-                <div className='ml-5'>
+                <div className='pl-4'>
 
                   <div className='flex items-center'>
                     <p className='text-[#678] text-xs'>Review by <span className='text-[#abc] text-bold'>{review.author}</span></p>
                     <ul className='flex ml-2'>{getReviewersStars(reviewerStars)}</ul>
                   </div>
 
-                  <div className='mt-2 w-full'>
-                    <p className='text-[#678] overflow-hidden text-ellipsis w-[40rem] max-h-24 text-left'>{review.content}</p>
+                  <div className='mt-2'>
+                    <p className='text-[#678] overflow-hidden text-ellipsis max-h-24 text-left'>{review.content}</p>
                   </div>
                 </div>
 
@@ -92,7 +91,7 @@ function MovieReviews(){
           }) : movieReviews.results}
 
         </div>
-      </div>
+      
 
     )
   }

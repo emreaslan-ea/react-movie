@@ -14,7 +14,7 @@ export default class TrendMovies extends Component {
     // to={`/:${id}`}
     return (
         
-            <div className='mt-52 lg:w-4/5 w-full mx-auto cursor-pointer text-[#abc]'>
+            <div className='px-8 lg:px-0 mt-28 md:mt-20 lg:mt-36 xl:mt-48 lg:w-4/5 w-full mx-auto cursor-pointer text-[#abc]'>
                 {console.log("trendMovies rendered")}
                 <div className='flex items-center'>
                     <h1 className='text-2xl mr-8 mb-2 font-normal'>Trending Movies</h1>
