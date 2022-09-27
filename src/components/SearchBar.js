@@ -6,17 +6,15 @@ function SearchBar(){
     const [searchMovie, setSearchMovie] = useState("");
     const [searchData, setSearchData] = useState({errors: ['query must be provided']});
 
-    const dataSearchMovie = async () =>{
-        const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${searchMovie}&pageg=1&include_adult=false`);
-        const responseData = await response.json();
-            
-        setSearchData(responseData);
-            
-    }
-    console.log(searchData);
-    console.log(searchMovie);
+
 
     useEffect( () =>{
+        const dataSearchMovie = async () =>{
+            const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${searchMovie}&pageg=1&include_adult=false`);
+            const responseData = await response.json();
+                
+            setSearchData(responseData);            
+        }
         dataSearchMovie();
     },[searchMovie]);
 

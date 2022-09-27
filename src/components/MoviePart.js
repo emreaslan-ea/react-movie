@@ -6,24 +6,20 @@ import MovieReviews from './MovieReviews';
 import MovieSimilar from './MovieSimilar';
 
 
-
-
-
 function MoviePart(){
 
     const { id } = useParams();
     const [movieDetail, setMovieDetail] = useState({});
-    
-    const dataDetail = async () =>{
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`);
-        const responseData = await response.json();
-        
-        setMovieDetail(responseData);
-        
-    }
-    
+     
 
     useEffect( () =>{
+        const dataDetail = async () =>{
+            const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`);
+            const responseData = await response.json();
+            
+            setMovieDetail(responseData);
+            
+        }
         dataDetail();
     },[id]);
     

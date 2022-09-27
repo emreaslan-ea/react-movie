@@ -2,7 +2,6 @@ const Footer = () =>{
 
     return (
       <footer className="mx-auto mt-32 w-full max-w-container ">
-        {console.log("footer rendered")}
         <div className="border-t-[0.5px] border-slate-700 py-10 flex flex-col justify-center items-center">
 
             <h1 className="font-serif text-xl font-extrabold tracking-wider text-[#abc]">REMOVIECT</h1>

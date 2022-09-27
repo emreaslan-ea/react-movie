@@ -57,12 +57,6 @@ function App(){
   },[]);
     
  
-    
-  
-  
-  
-  
-    
     // filter movies on search input value
     let filteredMovies = movies.filter(movie =>{
       if(movie.title){return movie.title.toLowerCase().indexOf(inputSearch.toLowerCase()) !== -1;}
@@ -74,7 +68,6 @@ function App(){
     return (
       
       <div className='bg-[#14181c]'>
-        {console.log("app rendered")}
       <Nav />
       
       <Routes>

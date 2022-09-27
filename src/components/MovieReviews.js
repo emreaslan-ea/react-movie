@@ -28,17 +28,13 @@ function MovieReviews(){
   },[urlID]);
   
   if(movieReviews.total_results === 0){
-    return <>
-    {console.log("movieReviews result0 rendered")}</>
-    
+    return <></>
   }
   else{
     return(
       
         <div className='mt-8'>
           <h3 className='uppercase text-sm tracking-wider border-b border-[#456] text-[#9ab]'>Popular Reviews</h3>
-
-          
 
           {movieReviews.results ? movieReviews.results.map((review, id) => {
 
@@ -62,7 +58,6 @@ function MovieReviews(){
             }else{
               avatarURL ='https://cdn-icons-png.flaticon.com/128/168/168734.png';
             }
-
 
             return (
 
@@ -91,8 +86,6 @@ function MovieReviews(){
           }) : movieReviews.results}
 
         </div>
-      
-
     )
   }
     

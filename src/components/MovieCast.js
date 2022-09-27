@@ -4,25 +4,26 @@ import { useEffect, useState } from 'react';
 function MovieCast(){
     
     const urlID = window.location.pathname.slice(1);
-
+    
+    
     const [movieCast, setMovieCasts] = useState({})
     
-    const dataCast = async () =>{
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${urlID}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
-        const responseData = await response.json();
-            
-        setMovieCasts(responseData);
-            
-    }
+
     
     useEffect( () =>{
+        const dataCast = async () =>{
+            const response = await fetch(`https://api.themoviedb.org/3/movie/${urlID}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
+            const responseData = await response.json();
+                
+            setMovieCasts(responseData);  
+        }
         dataCast();
-    },[]);
+    },[urlID]);
 
       
     return(
         <div className="mt-16 mb-12">
-            {console.log("movieCast rendered")}
+            
             <h3 className='uppercase text-sm tracking-wider border-b border-[#456] text-[#9ab]'>Cast</h3>
 
             <div className='gap-x-12 flex flex-nowrap overflow-x-auto pb-2 mt-6 scrollbar'>
@@ -39,9 +40,6 @@ function MovieCast(){
                         <div className="font-bold text-center text-xs text-[#abc] ">{cast.character}</div>
 
                         <div className="text-xs text-center text-[#678]">{cast.name}</div>
-
-
-
 
                     </div>
                 )): movieCast.cast}
