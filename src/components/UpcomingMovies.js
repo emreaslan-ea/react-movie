@@ -6,7 +6,6 @@ const UpcomingMovies = () =>{
     const [upcomingMovies, setUpcomingMovies] = useState("");
 
     
-    
     const fetchUpcomingMovies = async () =>{
         const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
         const responseData = await response.json();
@@ -18,12 +17,11 @@ const UpcomingMovies = () =>{
         fetchUpcomingMovies();
     },[])
 
-    console.log(upcomingMovies);
    
     return (
         
             <div className='px-8 lg:px-0 mt-16 lg:w-4/5 w-full mx-auto cursor-pointer text-[#abc]'>
-                {console.log("upcomingmovies rendered")}
+
                 <div className='flex items-center'>
                     <h1 className='text-2xl mr-8 mb-2 font-normal'>Upcoming Movies</h1>
                 </div>
